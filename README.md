@@ -11,6 +11,7 @@ Msql server
 **Input**
 
 Provide input in Config.py file:
+
 user = database user
 password = database password
 host = host address
@@ -23,6 +24,8 @@ Python3 (pwd)/main.py
 **Tables and Schema**
 
 database : products
+
+tables:
 prod(name,sku,description)
 aggregated_data(count,name)
 
