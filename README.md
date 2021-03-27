@@ -17,5 +17,19 @@ database = database name
 **running**
 Python3 (pwd)/main.py
 
+**Tables and Schema**
+database : products
+prod(name,sku,description)
+aggregated_data(count,name)
+
+**points to achive**
+1. Followed concept of oops.
+2. consedered about scaling(use dataframes for manulapation of data).
+3. All products datails are inserted in a single table.
+4. created an aggegerate table on name and no of products
+
+**Scope of Improvement**
+can create automate process to load data to our tables(eg. every day a fresh file is loaded to a ftp server or a cloud storage like aws S3 , the data is processed from the file to a staging table in database and then a merge query(upsert) is run to move it to the main table) an data pipeline can be created for a full automation process.
+
 **Contributions**
 All Pull requests are welcome.
