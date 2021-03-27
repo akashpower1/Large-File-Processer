@@ -12,10 +12,10 @@ Msql server
 
 Provide input in Config.py file:
 
-user = database user
-password = database password
-host = host address
-database = database name
+user = database user,
+password = database password,
+host = host address,
+database = database name,
 
 **Running**
 
