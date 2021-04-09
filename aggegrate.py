@@ -2,7 +2,7 @@ from pandas import DataFrame
 class aggregated:
     def __init__(self,cnx):
         self.cnx = cnx
-    def aggregated_prod(self,products):
+    def aggregated_prod(self):
         print('Starting Aggegration......')
         try:
             data = self.cnx.execute("Select count(*),name from prod group by name").fetchall()
