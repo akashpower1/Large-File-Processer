@@ -13,17 +13,18 @@ db = connect.DB_Connection()
 
 def worker():
     while True:
+        item = q.get()
         try:
             cnx, error = db.Mysqlconn()
             if error == 0:
-                item = q.get()
                 print('Inserting into database.......')
                 item.to_sql('prod', cnx, if_exists='append', index=False)
                 cnx.close()
-                q.task_done()
+                
 
         except Exception as e:
             print(e)
+        q.task_done()
 
 
 if __name__ == "__main__":
