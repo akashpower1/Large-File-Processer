@@ -26,7 +26,8 @@ Python3 (pwd)/main.py
 database : products
 
 tables:
-prod(name,sku,description)
+prod_temp(name,sku,description)
+prod(name,sku,description,rno)
 aggregated_data(count,name)
 
 **Points To Achive**
