@@ -18,9 +18,9 @@ def worker():
             cnx, error = db.Mysqlconn()
             if error == 0:
                 print('Inserting into database.......')
-                item.to_sql('prod', cnx, if_exists='append', index=False)
+                item.to_sql('prod_temp', cnx, if_exists='append', index=False)
                 cnx.close()
-                
+
 
         except Exception as e:
             print(e)
@@ -31,7 +31,7 @@ if __name__ == "__main__":
     try:
         cnx, error = db.Mysqlconn()
         if error == 0:
-            cnx.execute('Truncate table prod;')
+            cnx.execute('Truncate table prod_temp;')
             cnx.close()
         # Creating Worker threads
         for i in range(4):
@@ -43,7 +43,12 @@ if __name__ == "__main__":
         for chunk in pd.read_csv('products.csv', chunksize=chunk_size):
             q.put(chunk)
         q.join()
+
+        cnx, error = db.Mysqlconn()
+        if error == 0:
+            cnx.execute("insert into prod  select *, row_number() over(partition by sku order by name)  from prod_temp t on duplicate key update name = t.name, description = t.description;")
         time.sleep(5)
+
         print('Insertion completed successfully!!')
 
         # aggegration of data according to name
